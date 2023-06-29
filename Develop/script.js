@@ -30,75 +30,75 @@ function shuffle(array) {
 }
 
 
-// Temporary Code
+// My Code
 
+// all variables used
 var newPassTemp = [];
 var newPassFinal = [];
-var yesLower = false;
-var yesUpper = false;
-var yesNumbers = false;
-var yesSpecial = false;
-
 var lowercaseLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 var uppercaseLetters = ["A","B","C","D","E","F","G","H","I","J","K","L","M",'N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 var numbers = ['0','1','2','3','4','5','6','7','8','9'];
-var specialCharacters = ["!","\"","#","$","%","&","\'","(",")","*","+","\,","-",".","/",":",";","<","=",">","?","@","[","\\","]","^","_","`","{","|","}","~"];
+var specialCharacters = ["!","\"","#","$","%","&","\'","(",")","*","+","\,","-",".","/",":",";","<","=",">","?","@","[","]","^","_","`","{","|","}","~"];
 
+// Pop-up code
+var howManyCharsNeededStr = window.prompt("How many characters long should the password be? Anywhere from 8-128 is allowed")
+var yesLower = window.confirm("Would you like to have lowercase letters?");
+var yesUpper = window.confirm("Would you like to have uppercase letters?");
+var yesNumbers = window.confirm("Would you like to have numbers?");
+var yesSpecial = window.confirm("Would you like to have special characters?");
 
-console.log(specialCharacters);
+// Edit this in pop up windows
+var howManyCharsNeeded = parseInt(howManyCharsNeededStr);
+var howManyCharsNeededNow = howManyCharsNeeded;
 
-howManyCharsNeeded = 0
-yesLower = true;
-yesUpper = true;
-yesNumbers = true;
-yesSpecial = true;
+// Check if at least 8 characters and at max 128 characters
+if (howManyCharsNeeded <= 8 || howManyCharsNeeded >= 128) {
+  alert("Please have a number at least 8 and at max 128");
+}
 
-howManyCharsNeeded = 10
-howManyCharsNeededNow = howManyCharsNeeded
-
+// Check if using lowercase and adding one to password if true
 if (yesLower == true) {
   const random = Math.floor(Math.random() * lowercaseLetters.length);
-  console.log(lowercaseLetters[random]);
-  newPassFinal = newPassFinal.concat(lowercaseLetters[random])
+  newPassFinal = newPassFinal.concat(lowercaseLetters[random]);
   newPassTemp = newPassTemp.concat(lowercaseLetters);
   howManyCharsNeededNow = howManyCharsNeededNow-1;
+  console.log("password will contain lowercase letters");
 }
 
+// Check if using uppercase and adding one to password if true
 if (yesUpper == true) {
   const random = Math.floor(Math.random() * uppercaseLetters.length);
-  console.log(uppercaseLetters[random]);
-  newPassFinal = newPassFinal.concat(uppercaseLetters[random])
+  newPassFinal = newPassFinal.concat(uppercaseLetters[random]);
   newPassTemp = newPassTemp.concat(uppercaseLetters);
   howManyCharsNeededNow = howManyCharsNeededNow-1;
+  console.log("password will contain uppercase letters");
 }
 
+// Check if using numbers and adding one to password if true
 if (yesNumbers == true) {
   const random = Math.floor(Math.random() * numbers.length);
-  console.log(numbers[random]);
-  newPassFinal = newPassFinal.concat(numbers[random])
+  newPassFinal = newPassFinal.concat(numbers[random]);
   newPassTemp = newPassTemp.concat(numbers);
   howManyCharsNeededNow = howManyCharsNeededNow-1;
+  console.log("password will contain numbers")
 }
 
+// Check if using special characters and adding one to password if true
 if (yesSpecial == true) {
   const random = Math.floor(Math.random() * specialCharacters.length);
-  console.log(specialCharacters[random]);
   newPassFinal = newPassFinal.concat(specialCharacters[random])
   newPassTemp = newPassTemp.concat(specialCharacters);
   howManyCharsNeededNow = howManyCharsNeededNow-1;
+  console.log("password will contain special characters");
 }
 
-console.log(howManyCharsNeededNow + " Are still needed in the password");
-
+// Check how many more characters we need and filling in with allowed characters
 for (var i = 0; i < howManyCharsNeededNow; i++) { 
-  console.log("Adding " + howManyCharsNeededNow + " to the new password");
   const random = Math.floor(Math.random() * newPassTemp.length);
   newPassFinal = newPassFinal.concat(newPassTemp[random]);
 }
 
-console.log(newPassTemp);
-console.log(newPassFinal);
-
+// Shuffles the characters being used in the password and joins them
 var shuffledNewPassFinal = shuffle(newPassFinal);
-console.log("My new password is " + shuffledNewPassFinal);
+console.log("My new password is : " + shuffledNewPassFinal.join(''));
 
