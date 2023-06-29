@@ -52,7 +52,7 @@ function generatePassword() {
   var howManyCharsNeededNow = howManyCharsNeeded;
 
   // Check if at least 8 characters and at max 128 characters
-  if (howManyCharsNeeded <= 8 || howManyCharsNeeded >= 128) {
+  if (howManyCharsNeeded < 8 || howManyCharsNeeded > 128) {
     alert("Please have a number at least 8 and at max 128");
   }
 
@@ -101,6 +101,8 @@ function generatePassword() {
   // Shuffles the characters being used in the password and joins them
   var shuffledNewPassFinal = shuffle(newPassFinal);
   console.log("My new password is : " + shuffledNewPassFinal.join(''));
+
+  return shuffledNewPassFinal;
 }
 
 
