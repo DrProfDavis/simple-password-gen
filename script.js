@@ -5,30 +5,24 @@ var generateBtn = document.querySelector("#generate");
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
   passwordText.value = password;
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-
-
 // Stolen function code used for randomizing https://www.geeksforgeeks.org/how-to-shuffle-an-array-using-javascript/#
 
 function shuffle(array) {
   for (var i = array.length - 1; i > 0; i--) { 
-
       // Generate random number 
       var j = Math.floor(Math.random() * (i + 1));
-      
       var temp = array[i];
       array[i] = array[j];
       array[j] = temp;
   }
   return array;
 }
-
 
 // My Code
 function generatePassword() {
@@ -42,10 +36,6 @@ function generatePassword() {
 
   // Pop-up code
   var howManyCharsNeededStr = window.prompt("How many characters long should the password be? Anywhere from 8-128 is allowed")
-  var yesLower = window.confirm("Would you like to have lowercase letters?");
-  var yesUpper = window.confirm("Would you like to have uppercase letters?");
-  var yesNumbers = window.confirm("Would you like to have numbers?");
-  var yesSpecial = window.confirm("Would you like to have special characters?");
 
   // Edit this in pop up windows
   var howManyCharsNeeded = parseInt(howManyCharsNeededStr);
@@ -53,8 +43,15 @@ function generatePassword() {
 
   // Check if at least 8 characters and at max 128 characters
   if (howManyCharsNeeded < 8 || howManyCharsNeeded > 128) {
-    alert("Please have a number at least 8 and at max 128");
+    alert("Please have a character amount of at least 8 and at max 128");
+    return;
   }
+
+  // Pop-up code
+  var yesLower = window.confirm("Would you like to have lowercase letters?");
+  var yesUpper = window.confirm("Would you like to have uppercase letters?");
+  var yesNumbers = window.confirm("Would you like to have numbers?");
+  var yesSpecial = window.confirm("Would you like to have special characters?");
 
   // Check if using lowercase and adding one to password if true
   if (yesLower == true) {
@@ -62,7 +59,6 @@ function generatePassword() {
     newPassFinal = newPassFinal.concat(lowercaseLetters[random]);
     newPassTemp = newPassTemp.concat(lowercaseLetters);
     howManyCharsNeededNow = howManyCharsNeededNow-1;
-    console.log("password will contain lowercase letters");
   }
 
   // Check if using uppercase and adding one to password if true
@@ -71,7 +67,6 @@ function generatePassword() {
     newPassFinal = newPassFinal.concat(uppercaseLetters[random]);
     newPassTemp = newPassTemp.concat(uppercaseLetters);
     howManyCharsNeededNow = howManyCharsNeededNow-1;
-    console.log("password will contain uppercase letters");
   }
 
   // Check if using numbers and adding one to password if true
@@ -80,7 +75,6 @@ function generatePassword() {
     newPassFinal = newPassFinal.concat(numbers[random]);
     newPassTemp = newPassTemp.concat(numbers);
     howManyCharsNeededNow = howManyCharsNeededNow-1;
-    console.log("password will contain numbers")
   }
 
   // Check if using special characters and adding one to password if true
@@ -89,7 +83,6 @@ function generatePassword() {
     newPassFinal = newPassFinal.concat(specialCharacters[random])
     newPassTemp = newPassTemp.concat(specialCharacters);
     howManyCharsNeededNow = howManyCharsNeededNow-1;
-    console.log("password will contain special characters");
   }
 
   // Check how many more characters we need and filling in with allowed characters
@@ -100,9 +93,7 @@ function generatePassword() {
 
   // Shuffles the characters being used in the password and joins them
   var shuffledNewPassFinal = shuffle(newPassFinal);
-  console.log("My new password is : " + shuffledNewPassFinal.join(''));
-
-  return shuffledNewPassFinal;
+  return shuffledNewPassFinal.join('');
 }
 
 
